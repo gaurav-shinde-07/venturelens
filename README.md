@@ -1,4 +1,4 @@
-# VentureAI — AI-Powered Startup Idea Validator
+# VentureLens - AI-Powered Startup Idea Validator
 
 > Submit your startup idea. Get a comprehensive AI-generated validation report in under 15 seconds.
 
