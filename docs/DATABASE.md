@@ -89,7 +89,7 @@ CREATE OR REPLACE TRIGGER on_auth_user_created
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.ideas ENABLE ROW LEVEL SECURITY;
 
--- ---- Profiles RLS ----
+-- ---- Profiles RLS Policies ----
 CREATE POLICY "Users can view own profile"
   ON public.profiles FOR SELECT
   USING (auth.uid() = id);
@@ -98,7 +98,7 @@ CREATE POLICY "Users can update own profile"
   ON public.profiles FOR UPDATE
   USING (auth.uid() = id);
 
--- ---- Ideas RLS ----
+-- ---- Ideas RLS Policies ----
 CREATE POLICY "Users can view own ideas"
   ON public.ideas FOR SELECT
   USING (auth.uid() = user_id);
