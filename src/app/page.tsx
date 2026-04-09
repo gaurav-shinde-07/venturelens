@@ -136,7 +136,7 @@ export default function LandingPage() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[rgba(0,212,255,0.2)] text-[#00d4ff] text-sm font-medium mb-8 animate-fade-in">
             <Zap className="w-4 h-4" />
-            Powered by Gemini 1.5 Flash
+            AI Powered Startup Idea Validator
           </div>
 
           {/* Headline */}

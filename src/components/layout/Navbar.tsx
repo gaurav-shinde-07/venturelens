@@ -83,7 +83,7 @@ export default function Navbar() {
               <Zap className="w-4 h-4 text-white" />
             </div>
             <span className="font-heading font-bold text-lg text-white">
-              Venture<span className="gradient-text">AI</span>
+              Venture<span className="gradient-text">Lens</span>
             </span>
           </Link>
 

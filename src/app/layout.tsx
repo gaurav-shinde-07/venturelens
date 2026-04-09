@@ -9,15 +9,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "VentureAI — Validate Your Startup Idea",
-    template: "%s | VentureAI",
+    default: "VentureLens - Validate Your Startup Idea",
+    template: "%s | VentureLens",
   },
   description:
     "Get an AI-powered validation report for your startup idea. Analyze market fit, competitors, risk level, and profitability in seconds.",
   keywords: ["startup", "AI", "idea validation", "market research", "venture"],
-  authors: [{ name: "VentureAI" }],
+  authors: [{ name: "VentureLens" }],
   openGraph: {
-    title: "VentureAI — Validate Your Startup Idea with AI",
+    title: "VentureLens - Validate Your Startup Idea with AI",
     description:
       "Submit your startup idea and get a comprehensive AI analysis covering market fit, competitors, risk, and profitability.",
     type: "website",

@@ -16,7 +16,7 @@ export default function Footer() {
               <Zap className="w-3.5 h-3.5 text-white" />
             </div>
             <span className="font-heading font-bold text-white">
-              Venture<span className="gradient-text">AI</span>
+              Venture<span className="gradient-text">Lens</span>
             </span>
           </Link>
 
@@ -35,7 +35,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-slate-600 text-sm">
-            © {new Date().getFullYear()} VentureAI. Built with Gemini AI.
+            © {new Date().getFullYear()} VentureLens. Built by Gaurav Shinde.
           </p>
         </div>
       </div>

@@ -172,6 +172,3 @@ The Gemini prompt is engineered to return structured JSON with exactly 8 fields.
 
 ---
 
-## License
-
-MIT
