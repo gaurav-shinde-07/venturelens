@@ -1,14 +1,12 @@
 // ============================================
 // VentureAI — Supabase Middleware Client
-// Used specifically in middleware.ts to refresh
-// user sessions on every request
+// Runs on every request to refresh user sessions
 // ============================================
 
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function updateSession(request: NextRequest) {
-  // Start with a passthrough response — we'll modify it if needed
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -19,8 +17,10 @@ export async function updateSession(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
-          // Set cookies on both request and response
+        // Explicit types fix the implicit 'any' TS errors
+        setAll(
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[]
+        ) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           );
@@ -33,13 +33,12 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // IMPORTANT: Always call getUser() to refresh the session token
-  // Never use getSession() here — it's not reliable in middleware
+  // IMPORTANT: Always use getUser() in middleware, never getSession()
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Define protected routes — redirect to login if not authenticated
+  // Protect these routes — redirect to login if not authenticated
   const protectedPaths = ["/dashboard", "/ideas"];
   const isProtectedPath = protectedPaths.some((path) =>
     request.nextUrl.pathname.startsWith(path)
@@ -48,7 +47,6 @@ export async function updateSession(request: NextRequest) {
   if (isProtectedPath && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/auth/login";
-    // Save the original URL so we can redirect back after login
     url.searchParams.set("redirectTo", request.nextUrl.pathname);
     return NextResponse.redirect(url);
   }
