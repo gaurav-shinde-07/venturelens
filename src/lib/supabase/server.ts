@@ -3,11 +3,9 @@
 // Used in Server Components and API Routes
 // ============================================
 
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-// Creates a Supabase client that reads auth cookies server-side
-// This is how we know who the logged-in user is in API routes
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -19,14 +17,17 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        // Explicit type annotation fixes the implicit 'any' TS error
+        setAll(
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[]
+        ) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             );
           } catch {
-            // setAll called from a Server Component — cookies can't be
-            // set here but auth will still work if middleware refreshes sessions
+            // Called from a Server Component — safe to ignore.
+            // Middleware handles session refresh instead.
           }
         },
       },
