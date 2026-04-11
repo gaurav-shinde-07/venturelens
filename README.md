@@ -82,7 +82,7 @@ ventureai/
 ### Step 1 — Clone and install
 
 ```bash
-git clone https://github.com/yourusername/ventureai.git
+git clone https://github.com/gaurav-shinde-07/venturelens.git
 cd ventureai
 npm install
 ```
